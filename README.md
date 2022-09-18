@@ -10,4 +10,4 @@
 ## 24 Hour Digital Clock Demo Page:
 
 ## Working Demo:
-![Screenshot] (https://github.com/Shivanand1999/Digital-Clock/blob/c0a3d15bc1450264d97a6ee1f71165d7cefc28fb/screenshots/Digital%20Clock%20Design%20_%20With%2012-hour_24-hour%20format%20Switcher%20-%20HTML,%20CSS%20and%20JavaScript%20-%20Google%20Chrome%202022-09-18%2016-57-52.mp4)
+https://github.com/Shivanand1999/Digital-Clock/blob/c0a3d15bc1450264d97a6ee1f71165d7cefc28fb/screenshots/Digital%20Clock%20Design%20_%20With%2012-hour_24-hour%20format%20Switcher%20-%20HTML,%20CSS%20and%20JavaScript%20-%20Google%20Chrome%202022-09-18%2016-57-52.mp4
