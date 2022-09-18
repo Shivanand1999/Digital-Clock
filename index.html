@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Digital Clock Design | With 12-hour/24-hour format Switcher - HTML, CSS and JavaScript </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    </head>
+
+    <body>
+        <div class="digital-clock">
+            <i class="uil uil-ellipsis-v dot-menu-btn" id="active-menu"></i>
+            <ul class="dot-menu" id="active-menu">
+                <li class="menu-item" id="active-menu">
+                    <span class="clock-format-text" id="active-menu">24-hour format</span>
+                    <div class="format-switch-btn" id="active-menu" data-format="12"></div>
+                </li>
+            </ul>
+            <div class="time">
+                <span class="hours">00</span>
+                <span class="dots">:</span>
+                <span class="minutes">00</span>
+                <div class="right-side">
+                    <span class="period">AM/PM</span>
+                    <span class="seconds">00</span>
+                </div>
+            </div>
+            <div class="calendar">
+                <span class="month-name">Month</span>,
+                <span class="day-name">Day</span> 
+                <span class="day-number">Day Number</span>
+               <!-- <span class="year">Year</span>  --> 
+            </div>
+        </div>
+
+        <script>
+            //JavasScript for switch clock-format
+
+            const formatSwitchBtn = document.querySelector(".format-switch-btn");
+
+            formatSwitchBtn.addEventListener("click", () =>{
+                formatSwitchBtn.classList.toggle("active");
+                
+                var  formatValue = formatSwitchBtn.getAttribute("data-format");
+
+                if(formatValue === "12"){
+                    formatSwitchBtn.setAttribute("data-format", "24");
+                }else{
+                    formatSwitchBtn.setAttribute("data-format", "12");
+                }
+            })
+
+            //Get current time in javascript
+            function clock(){
+
+                let date = new Date(); 
+                let hh = date.getHours();
+                let mm = date.getMinutes();
+                let ss = date.getSeconds();
+                let session = "AM";
+
+                var  formatValue = formatSwitchBtn.getAttribute("data-format");
+                if(formatValue === "24"){
+                    hh = hh;
+                }else{
+                    if(hh === 0){
+                    hh = 12;
+                    }
+                    if(hh > 12){
+                        hh = hh - 12;
+                        session = "PM";
+                    }
+                }
+                /*if(hh > 12){
+                    hh = hh - 12;
+                    session = "PM";
+                }
+                */
+                hh = (hh < 10) ? "0" + hh : hh;
+                mm = (mm < 10) ? "0" + mm : mm;
+                ss = (ss < 10) ? "0" + ss : ss;
+
+                document.querySelector(".hours").innerHTML = hh;
+                document.querySelector(".minutes").innerHTML = mm;
+                document.querySelector(".seconds").innerHTML = ss;
+                document.querySelector(".period").innerHTML = session;
+
+                let t = setTimeout(function(){ clock() }, 1000);
+            }
+            clock();
+
+            //Get the date in javaScript
+            var today = new Date();
+            const dayNumber = today.getDate();
+            const year = today.getFullYear();
+            const dayName = today.toLocaleString("default", {weekday: "long"});
+            const monthName = today.toLocaleString("default", {month: "short"});
+
+            document.querySelector(".month-name").innerHTML = monthName;
+            document.querySelector(".day-name").innerHTML = dayName;
+            document.querySelector(".day-number").innerHTML = dayNumber;
+            //document.querySelector(".year").innerHTML = year; 
+
+            //JavaScript for dotmenu toggle
+            const dotmenuBtn = document.querySelector(".dot-menu-btn");
+            const dotMenu = document.querySelector(".dot-menu");
+
+            dotmenuBtn.addEventListener("click", () => {
+                dotMenu.classList.toggle("active");
+            });
+
+            document.addEventListener("click", (e) => {
+                if(e.target.id !== "active-menu"){
+                    dotMenu.classList.remove("active");
+                }
+            });
+
+        </script>
+    </body>
+</html>
